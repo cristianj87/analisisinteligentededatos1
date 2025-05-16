@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidad 3 - Procesamiento de Datos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header, footer {
+      background-color: #004080;
+      color: #fff;
+      padding: 1em;
+      text-align: center;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2em;
+      background: white;
+    }
+    h1, h2, h3 {
+      color: #004080;
+    }
+    code {
+      background: #eee;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    pre {
+      background: #f0f0f0;
+      padding: 1em;
+      overflow-x: auto;
+    }
+    .example {
+      background: #e6f2ff;
+      padding: 1em;
+      margin: 1em 0;
+      border-left: 4px solid #004080;
+    }
+    canvas {
+      margin-top: 20px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Análisis Inteligente de Datos I</h1>
+    <p><font size="14">Unidad 3: Procesamiento de Datos</p></font>
+  </header>
+
+  <div class="container">
+    <p>El procesamiento de datos es un componente esencial en el análisis inteligente de datos. A través de esta unidad, se busca preparar, analizar y transformar los datos en conocimiento útil para la toma de decisiones. La unidad cubre desde la instalación de herramientas hasta la creación y análisis de conjuntos de datos.</p>
+    <h2>3.1 Instalación y configuración de herramienta para el procesamiento de datos</h2>
+    <p>El procesamiento de datos requiere herramientas especializadas que permitan la manipulación, análisis y visualización de grandes volúmenes de información.</p>
+    <p>Algunas herramientas utilizadas en el análisis de datos incluyen:</p>
+    <ul>
+        <li>Python (con librerías como pandas, numpy, matplotlib, scikit-learn): Python es uno de los lenguajes más populares en ciencia de datos. Jupyter permite ejecutar código de manera interactiva y visualizar resultados en celdas.</li>
+        <li>R y RStudio: populares en análisis estadístico.RStudio facilita la escritura de scripts, ejecución de código y visualización.</li>
+        <li>Jupyter Notebook: entorno interactivo ideal para procesamiento de datos.</li>
+        <li>Google Colab: versión en la nube de Jupyter, gratuita y con recursos de cómputo.</li>
+        <li>Power BI: Herramientas de business intelligence que permiten procesamiento básico, modelado de datos y visualización. Para crear dashboards e informes visuales.</li>
+        <li>Excel avanzado: sigue siendo útil en etapas iniciales y proyectos pequeños.</li>
+        <li>Apache Spark: para el procesamiento distribuido de grandes volúmenes de datos.</li>
+      </ul>
+    
+    <div class="example">
+      <strong>Ejemplo:</strong> Instalación de Python con Anaconda y ejecución de Jupyter Notebook.
+      <pre><code>conda create -n data_env python=3.10
+conda activate data_env
+pip install pandas numpy matplotlib seaborn scikit-learn
+jupyter notebook</code></pre>
+    </div>
+
+    <h2>3.2 Estadística Inferencial</h2>
+    <p>La estadística inferencial permite hacer predicciones o conclusiones sobre una población a partir de una muestra de datos, utilizando herramientas como estimaciones, intervalos de confianza y pruebas de hipótesis.</p>
+
+    <ul>
+        <li>Población: conjunto total de datos o individuos.</li>
+        <li>Muestra: subconjunto representativo de la población.</li>
+    </ul>
+    
+    
+    <p><strong>Conceptos clave:</strong></p>
+    <ul>
+        <li>Parámetro vs. estadístico: media, proporción, varianza poblacional.</li>
+        <li>Distribución muestral</li>
+        <li>Intervalos de confianza: probabilidad de que un parámetro se encuentre en un rango.</li>
+        <li>Pruebas de hipótesis: comparar valores teóricos con observados.</li>
+        <li>Correlación y regresión: relaciones entre variables.</li>
+    </ul>
+
+    <div class="example">
+      <strong>Ejemplo:</strong> Prueba t para comprobar si el salario promedio supera los $10,000.
+      <pre><code>import numpy as np
+from scipy import stats
+salarios = np.random.normal(loc=10500, scale=1200, size=30)
+t_stat, p_value = stats.ttest_1samp(salarios, 10000)</code></pre>
+    </div>
+
+    <h2>3.3 Procesamiento de datos</h2>
+    <p>Esta etapa se centra en la limpieza, transformación y normalización de los datos para su análisis. Un mal procesamiento puede llevar a conclusiones erróneas.</p>
+    <p><strong>Fases del procesamiento:</strong></p>
+    <ul>
+        <li>Recopilación de datos</li>
+        <li>Limpieza de datos (eliminar nulos, duplicados)</li>
+        <li>Conversión de tipos de datos</li>
+        <li>Normalización/Estandarización</li>
+        <li>Codificación de variables categóricas</li>
+        <li>Integración</li>
+    </ul>
+    <div class="example">
+      <strong>Ejemplo:</strong> Limpieza y transformación de datos en Pandas.
+      <pre><code>df = pd.read_csv("datos_clientes.csv")
+df = df.dropna()
+df["edad"] = pd.to_numeric(df["edad"], errors='coerce')
+df["ingresos_norm"] = (df["ingresos"] - df["ingresos"].mean()) / df["ingresos"].std()
+df = pd.get_dummies(df, columns=["genero"])</code></pre>
+    </div>
+
+    <h2>3.4 Diseño de la estructura y representación de datos</h2>
+    <p>La forma en que los datos están estructurados impacta directamente en su análisis. Es fundamental diseñar estructuras coherentes, normalizadas y representativas.</p>
+    <p>Es importante estructurar datos en tablas, JSON, matrices, etc., para facilitar el análisis.</p>
+    <p><strong>Estructuras comunes:</strong></p>
+    <ul>
+        <li>Tablas relacionales (SQL): Organización en tablas interrelacionadas mediante claves primarias y foráneas.</li>
+        <li>Bases de datos NoSQL: Documentales (MongoDB), clave-valor, columnares (Apache Cassandra), grafos (Neo4j).</li>
+        <li>DataFrames (Pandas): Cada columna representa una variable. Cada fila representa una observación o caso.</li>
+        <li>JSON, XML (datos jerárquicos): útiles cuando los datos tienen relaciones anidadas.</li>
+        <li>Matrices o tensores (para machine learning)</li>
+    </ul>
+    
+    <div class="example">
+      <strong>Ejemplo:</strong> DataFrame de ventas:
+      <pre><code>ventas = pd.DataFrame({
+  'id_cliente': [1, 2, 3],
+  'fecha': ['2024-09-01', '2024-09-02', '2024-09-03'],
+  'producto': ['Teclado', 'Mouse', 'Monitor'],
+  'cantidad': [2, 1, 1],
+  'precio_unitario': [350, 150, 4200]
+})
+ventas["total"] = ventas["cantidad"] * ventas["precio_unitario"]</code></pre>
+    </div>
+
+    <h2>3.5 Creación y análisis de un conjunto de datos (DATA SET)</h2>
+    <p>El dataset es el núcleo del análisis. Puede crearse manualmente, importarse de fuentes externas (CSV, APIs, bases de datos), o generarse mediante simulación.</p>
+    <p><strong>Pasos para trabajar un dataset:</strong></p>
+    <ul>
+        <li>Definir el objetivo del análisis</li>
+        <li>Recolección de datos</li>
+        <li>Limpieza y procesamiento</li>
+        <li>Exploración visual y estadística</li>
+        <li>Análisis avanzado (clustering, regresión, etc.)</li>
+        <li>Conclusiones e insights</li>
+    </ul>
+    <div class="example">
+      <strong>Ejemplo:</strong> Análisis exploratorio de un dataset:</p>
+      <pre><code>df = pd.read_csv("clientes.csv")
+print(df.describe())
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.histplot(df["edad"], bins=10)
+plt.show()</code></pre>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Unidad 3 - Análisis Inteligente de Datos</p>
+  </footer>
+</body>
+</html>
